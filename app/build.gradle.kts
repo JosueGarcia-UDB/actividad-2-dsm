@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "sv.edu.udb.actividad2"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "sv.edu.udb.actividad2"
@@ -45,4 +45,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.squareup.retrofit2:retrofit:3.1.0-SNAPSHOT")
 }
