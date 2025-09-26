@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
     implementation(libs.moshi)
+    implementation(libs.kotlin.reflect)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.glide)
     implementation(libs.androidx.swiperefreshlayout)
