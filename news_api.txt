@@ -1,0 +1,53 @@
+Genera el código Kotlin completo para una aplicación Android que consume la API de NewsAPI utilizando Retrofit.
+
+**Contexto del proyecto:**
+1.  **Dependencias:** Las dependencias de Retrofit, Moshi/Gson, RecyclerView, y Glide ya están agregadas en el `build.gradle.kts (app)`.
+2.  **API Key:** La API Key está disponible de forma segura en `local.properties` bajo la clave `NEWS_API_KEY`.
+3.  **Endpoint:** Utiliza el endpoint para obtener los titulares principales (top-headlines).
+
+**Requisitos de Implementación:**
+
+### 1. Modelos de Datos (Data Classes)
+Crea las Data Classes de Kotlin necesarias para mapear la respuesta de la API de NewsAPI, incluyendo al menos:
+* `NewsResponse` (para el cuerpo principal de la respuesta).
+* `Article` (para el ítem individual de la noticia, incluyendo título, descripción y URL de la imagen).
+
+### 2. Servicio Retrofit
+* Crea la interfaz `NewsApiService` con la función para obtener los titulares.
+* Debe usar la anotación `@Query` para pasar la API Key (`apiKey`) y el país (ej. `us`) como parámetros. La API Key se obtendrá de las variables de entorno o de la configuración segura (sugiere cómo obtenerla desde `BuildConfig` o similar, ya que proviene de `local.properties`).
+* Crea un objeto o clase `RetrofitClient` para inicializar y proveer la instancia de Retrofit.
+
+### 3. Interfaz de Usuario (MainActivity & Layouts)
+* **`activity_main.xml`:** Debe contener un `RecyclerView` (`id: recyclerView`), un `ProgressBar` centrado (`id: progressBar`), y un `TextView` centrado (`id: textViewError`) para mostrar mensajes de error/estado (inicialmente ocultos). También incluye un `SwipeRefreshLayout` envolviendo el RecyclerView para la funcionalidad de "deslizar para refrescar".
+* **`item_article.xml`:** Crea el layout para cada ítem del RecyclerView. Debe incluir un `ImageView` para la imagen, un `TextView` para el título y otro para la descripción. Utiliza un `CardView` para un mejor diseño.
+
+### 4. Adapter y ViewHolder
+* Crea una clase `NewsAdapter` que extienda `RecyclerView.Adapter`.
+* El `ViewHolder` debe enlazar los datos (`Article`) a la vista.
+* Usa **Glide** dentro del `onBindViewHolder` para cargar la imagen (`urlToImage`) en el `ImageView`.
+
+### 5. Lógica de la Actividad (MainActivity.kt)
+* **ViewModel:** Utiliza un `ViewModel` (`NewsViewModel`) para la lógica de la API y el manejo de estados.
+* **Estados de la UI (Sealed Class/Enum):** Define un mecanismo para manejar los estados: `Loading`, `Success(List<Article>)`, `Error(String)`.
+* **Carga Inicial y Actualización:** En la `MainActivity`, llama a la función de carga de datos en el `ViewModel` al inicio. Implementa la lógica para el `SwipeRefreshLayout` para llamar a la misma función de carga.
+* **Manejo de Estados:** Observa los estados del `ViewModel` y actualiza la UI:
+    * **Loading:** Muestra el `ProgressBar` y el `SwipeRefreshLayout` si está activo. Oculta el `RecyclerView` y el `TextViewError`.
+    * **Success:** Oculta el `ProgressBar` y el `TextViewError`. Muestra el `RecyclerView` con los datos cargados en el `NewsAdapter`.
+    * **Error:** Oculta el `ProgressBar` y el `RecyclerView`. Muestra el `TextViewError` con el mensaje adecuado (ej. "Error en el servidor" o "Problema de conexión").
+
+### 6. Manejo de Errores
+* Implementa el manejo de excepciones en el `ViewModel` para diferenciar y mostrar mensajes:
+    * **Errores de Conexión/Red:** Capturar `IOException` (o similar) para mostrar "No hay conexión a Internet. Por favor, inténtelo de nuevo."
+    * **Errores HTTP (4xx, 5xx):** Mostrar un mensaje genérico de error de servidor, incluyendo el código de error si es posible (ej. "Error en el servidor: Código 401").
+    * **Cualquier otra excepción:** Mostrar "Ocurrió un error inesperado."
+
+Genera el código completo para:
+- `Article.kt`, `NewsResponse.kt`
+- `NewsApiService.kt`
+- `RetrofitClient.kt`
+- `NewsAdapter.kt`
+- `NewsViewModel.kt`
+- `MainActivity.kt`
+- `activity_main.xml`
+- `item_article.xml`
+- Sugiere la implementación para obtener la API Key de `local.properties` a través de `BuildConfig`.
