@@ -24,7 +24,7 @@ class NewsViewModel : ViewModel() {
         _uiState.value = UiState.Loading
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.instance.getTopHeadlines(apiKey, country)
+                val response = RetrofitClient.instance.getTopHeadlines(country, apiKey)
                 _uiState.postValue(UiState.Success(response.articles ?: emptyList()))
             } catch (e: IOException) {
                 _uiState.postValue(UiState.Error("No hay conexión a Internet. Por favor, inténtelo de nuevo."))

@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     binding.progressBar.visibility = View.GONE
                     binding.recyclerView.visibility = View.VISIBLE
                     binding.textViewError.visibility = View.GONE
-                    newsAdapter.updateArticles(state.articles ?: emptyList())
+                    newsAdapter.updateArticles(state.articles)
                     binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is UiState.Error -> {

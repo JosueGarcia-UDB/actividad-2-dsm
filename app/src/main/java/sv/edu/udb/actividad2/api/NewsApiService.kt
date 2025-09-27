@@ -7,7 +7,7 @@ import sv.edu.udb.actividad2.models.NewsResponse
 interface NewsApiService {
     @GET("top-headlines")
     suspend fun getTopHeadlines(
-        @Query("apiKey") apiKey: String,
-        @Query("country") country: String
+        @Query("country") country: String,
+        @Query("apiKey") apiKey: String
     ): NewsResponse
 }
