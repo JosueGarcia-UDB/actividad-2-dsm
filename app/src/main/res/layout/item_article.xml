@@ -91,6 +91,16 @@
                 android:ellipsize="end"
                 android:text="" />
 
+            <Button
+                android:id="@+id/buttonReadMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#FF6B35"
+                android:textColor="#FFFFFF"
+                android:text="Ver más...">
+            </Button>
+
 
 
         </LinearLayout>

@@ -1,8 +1,11 @@
 package sv.edu.udb.actividad2.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +36,7 @@ class NewsAdapter(private var articles: List<Article>) : RecyclerView.Adapter<Ne
         private val imageView: ImageView = itemView.findViewById(R.id.imageView)
         private val textViewTitle: TextView = itemView.findViewById(R.id.textViewTitle)
         private val textViewDescription: TextView = itemView.findViewById(R.id.textViewDescription)
+        private val buttonReadMore: Button = itemView.findViewById(R.id.buttonReadMore)
 
         fun bind(article: Article) {
             textViewTitle.text = article.title
@@ -40,6 +44,12 @@ class NewsAdapter(private var articles: List<Article>) : RecyclerView.Adapter<Ne
             Glide.with(itemView.context)
                 .load(article.urlToImage)
                 .into(imageView)
+            buttonReadMore.setOnClickListener {
+                article.url?.let { url ->
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    itemView.context.startActivity(intent)
+                }
+            }
         }
     }
 }
