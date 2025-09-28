@@ -1,73 +1,117 @@
-# Actividad 2 - Lector de Noticias
+# 📰 Actividad 2 - Lector de Noticias
 
-## Descripción
+Aplicación móvil desarrollada en **Kotlin** para dispositivos Android.  
+Funciona como un lector de noticias sencillo que consume la API de [NewsAPI](https://newsapi.org) para mostrar los titulares más importantes de Estados Unidos.
 
-Esta es una aplicación para Android que funciona como un lector de noticias simple. La aplicación consume la API de [NewsAPI](https://newsapi.org) para obtener y mostrar los titulares de noticias más importantes de Estados Unidos.
+El proyecto tiene como objetivo practicar el consumo de servicios REST, el uso de arquitectura **MVVM**, componentes de Android Jetpack y librerías modernas para UI y networking.
 
-### Características Principales
-- Muestra noticias en una lista con imagen, título y descripción.
-- Permite al usuario hacer clic en un botón para leer el artículo completo en el navegador web.
-- Incluye la funcionalidad "deslizar para refrescar" para volver a cargar los titulares.
-- Maneja estados de carga, éxito y error para una mejor experiencia de usuario.
+---
 
-## Integrantes
+# 🧑‍💻 Integrantes
 
-| Nombre Completo                  | Carnet   |
-|----------------------------------|----------|
+| Nombre de Integrante             | Carnet   |
+| -------------------------------- | -------- |
 | Josué Eduardo García Estrada     | GE240098 |
 | Jeremy Edenilson Flores Portillo | FP240479 |
 | Edgar Josué Gómez Meléndez       | GM240279 |
 | Oscar Daniel Soto Jovel          | SJ241841 |
 
-## Tecnologías Utilizadas
+---
 
-- **Lenguaje:** Kotlin
-- **Arquitectura:** MVVM (Model-View-ViewModel)
-- **Componentes de Android Jetpack:**
-    - ViewModel: Para gestionar la lógica de la UI y el estado.
-    - LiveData: Para observar cambios en los datos de forma reactiva.
-- **UI:**
-    - RecyclerView: Para mostrar la lista de noticias de forma eficiente.
-    - Material Components: Para los elementos de la interfaz como `CardView` y botones.
-    - SwipeRefreshLayout: Para la funcionalidad de "deslizar para refrescar".
-- **Networking:**
-    - Retrofit: Para realizar las peticiones HTTP a la API.
-    - Moshi: Para parsear la respuesta JSON a objetos de Kotlin.
-- **Carga de Imágenes:**
-    - Glide: Para descargar y mostrar las imágenes de las noticias de forma asíncrona.
+## 🚀 Tecnologías Utilizadas
 
-## Cómo Ejecutar el Proyecto
+La aplicación fue construida utilizando las siguientes tecnologías y herramientas:
 
-Sigue estos pasos para clonar, configurar y ejecutar el proyecto en tu máquina local.
+### 📱 Android & Arquitectura
 
-### 1. Obtener la API Key de NewsAPI
+* **Kotlin**  
+  Lenguaje principal de la aplicación.
 
-Para que la aplicación pueda obtener las noticias, necesitas una clave (API Key) de NewsAPI.
+* **MVVM (Model-View-ViewModel)**  
+  Arquitectura utilizada para separar lógica de UI y mantener un flujo de datos limpio.
 
-1.  Ir a [newsapi.org](https://newsapi.org).
-2.  Hacer clic en **"Get API Key"** y se debe registrar para obtener una cuenta gratuita.
-3.  Una vez registrado, se proporcionará una API Key. Se copia.
+* **Android Jetpack**
+    - **ViewModel**: Manejo de estado y lógica de la UI.
+    - **LiveData**: Observación reactiva de datos.
+    - **RecyclerView**: Renderizado eficiente de la lista de noticias.
+    - **SwipeRefreshLayout**: Funcionalidad de "deslizar para refrescar".
+    - **Material Components**: Estilo moderno (CardView, botones, etc.).
 
-### 2. Configurar la API Key en el Proyecto
+### 🌐 Networking
 
-La API Key no debe ser almacenada directamente en el código fuente por seguridad. En su lugar, se debe colocar en el archivo `local.properties`.
+* **Retrofit**  
+  Cliente HTTP para interactuar con la API.
 
-1.  En la raíz de tu proyecto de Android Studio, busca o crea un archivo llamado `local.properties`.
-2.  Abre el archivo y añade la siguiente línea, reemplazando `"TU_API_KEY"` con la clave que obtuviste en el paso anterior:
+* **Moshi**  
+  Conversión de JSON a objetos Kotlin.
 
-    ```properties
-    API_KEY="TU_API_KEY"
-    ```
-3.  Android Studio se encargará de que esta clave sea accesible en el código a través de `BuildConfig.API_KEY`. El archivo `local.properties` ya está incluido en el `.gitignore` para evitar que se suba al repositorio.
+### 🖼️ Carga de Imágenes
 
-### 3. Instalación y Ejecución
+* **Glide**  
+  Descarga y muestra de imágenes de manera asíncrona.
 
-1.  **Clona el repositorio** en tu máquina local usando Git:
-    ```bash
-    git clone <"https://github.com/JosueGarcia-UDB/actividad-2-dsm">
-    ```
-2.  **Abre el proyecto** con Android Studio.
-3.  **Espera a que Gradle se sincronice**. Android Studio descargará automáticamente todas las dependencias necesarias para el proyecto. Este proceso puede tardar unos minutos.
-4.  **Ejecuta la aplicación**. Una vez que la sincronización de Gradle haya finalizado, puedes ejecutar la aplicación:
-    - Selecciona un emulador de Android o conecta un dispositivo físico.
-    - Haz clic en el botón **Run 'app'** (el icono de play verde) en la barra de herramientas superior.
+---
+
+# 📲 ¿Cómo ejecutar el proyecto?
+
+## ✅ Requisitos Previos
+
+Antes de ejecutar el proyecto, se deben cumplir los siguientes requisitos:
+
+* **Android Studio**
+* **Java JDK 17**
+* **Gradle (versión usada por Android Studio)**
+* **Dispositivo físico o emulador (API 24 o superior)**
+* **API Key de NewsAPI** (gratuita en [newsapi.org](https://newsapi.org))
+
+---
+
+## ⚙️ Instalación Paso a Paso
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone https://github.com/JosueGarcia-UDB/actividad-2-dsm.git
+cd actividad-2-dsm
+```
+
+### 2. Configurar la API Key
+
+1. En la raíz del proyecto, abrir o crear el archivo `local.properties`.
+2. Agregar la siguiente línea, reemplazando `"TU_API_KEY"` por la clave obtenida en NewsAPI:
+
+```properties
+API_KEY="TU_API_KEY"
+```
+
+> El archivo `local.properties` ya está en el `.gitignore`, por lo que la clave no se subirá al repositorio.
+
+### 3. Abrir el Proyecto
+
+* Abrir Android Studio → `Archivo > Abrir` → seleccionar la carpeta del proyecto.
+
+### 4. Sincronizar con Gradle
+
+* Esperar a que Android Studio descargue e instale las dependencias necesarias.
+
+### 5. Ejecutar la App
+
+* Seleccionar un emulador o conectar un dispositivo físico.
+* Presionar ▶️ **Run 'app'** en Android Studio.
+
+---
+
+## 📝 Funcionalidades Principales
+
+* 📰 **Lista de noticias** con imagen, título y descripción.
+* 🌍 **Abrir artículos en navegador** mediante un botón.
+* 🔄 **Deslizar para refrescar** titulares en tiempo real.
+* ⚡ **Manejo de estados**: carga, éxito y error.
+
+---
+
+## 📸 Video demo
+
+Un video demostrativo de la aplicación en funcionamiento puede visualizarse en el siguiente enlace:
+
+👉 [Ver Video Demo](https://share.cleanshot.com/SzPR75vS)
